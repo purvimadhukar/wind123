@@ -83,3 +83,13 @@ from fastapi.staticfiles import StaticFiles
 STATIC = Path(__file__).parent / "static"
 if STATIC.exists():   # only inside Docker, where the built React files are copied
     app.mount("/", StaticFiles(directory=STATIC, html=True), name="static")
+
+# TEMPORARY: show which path the server received (remove once deployment works)
+from fastapi import Request
+from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
+@app.exception_handler(StarletteHTTPException)
+async def show_path(request: Request, exc: StarletteHTTPException):
+    return JSONResponse({"detail": exc.detail, "path_seen": request.url.path},
+                        status_code=exc.status_code)
