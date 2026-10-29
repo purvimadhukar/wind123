@@ -43,4 +43,4 @@ Then open http://localhost:5173
 - The 09:20 cutoff comes from published gate-closure times and may change; check the exchanges.
 
 ## AI tools
-This project was built with the help of Claude (Anthropic), used for explanations, code generation and review.
+This project was built with the help of copilot, used for explanations, code generation and review.
